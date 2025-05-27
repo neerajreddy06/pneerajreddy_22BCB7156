@@ -1,0 +1,102 @@
+use vit;
+show tables from vit;
+create table student (
+id int,
+name varchar(25),
+marks int
+);
+insert into student values (101,'Neeraj',99),(102,'Cassey',95);
+select * from student;
+
+
+
+
+
+//DBConnection
+package connection;
+
+import java.sql.*;
+
+public class DBConnection {
+
+	public static void main(String[] args) {
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			Connection con=DriverManager.getConnection(
+			"jdbc:mysql://localhost:3306/vit","root","Neerajreddy@2005");
+			
+			Statement stmt=con.createStatement();
+			ResultSet rs=stmt.executeQuery("select * from student");
+			while(rs.next())
+			System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3));
+			con.close();
+			
+		}
+		catch(Exception e) {
+			System.out.println("Sorry for inconvinience's please check the credentials");
+		}
+	}
+
+}
+
+
+
+
+
+//CRUD
+//DB_Connections.java
+package crud_operations;
+
+import java.sql.*;
+
+public class DB_Connections {
+
+	public static void main(String[] args) {
+		DB_Connections obj_DB_Connection=new DB_Connections();
+		System.out.println(obj_DB_Connection.get_connection());
+	}
+	public Connection get_connection() {
+		Connection connection=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/vit","root","Neerajreddy@2005");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return connection;
+	}
+}
+
+//CRUD_Operations.java
+package crud_operations;
+
+import java.sql.*;
+
+public class CRUD_Operations {
+
+	public static void main(String[] args) {
+		CRUD_Operations objTest=new CRUD_Operations();
+		objTest.create_data(103,"Manoj",55);
+		objTest.create_data(104,"Sudhar",65);
+	}
+	public void create_data(int id,String name,int marks) {
+		DB_Connections obj_DB_Connection=new DB_Connections();
+		Connection connection=obj_DB_Connection.get_connection();
+		PreparedStatement ps=null;
+		try {
+			String query="insert into student(id,name,marks) values(?,?,?)";
+			ps=connection.prepareStatement(query);
+			ps.setInt(1,id);
+			ps.setString(2,name);
+			ps.setInt(3,marks);
+			System.out.println(ps);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+}
+
+
