@@ -1,0 +1,35 @@
+show databases;
+use worker;
+select * from workers;
+
+select department,count(department) from workers where department = 'sales';
+select department,count(department) from workers group by department;           # group by groups the common elements in a particular column
+select count(department) from workers group by department order by count(department) desc limit 1;
+select department,sum(salary) from workers group by department order by sum(salary) desc limit 1;
+select department,count(department) from workers group by department having count(department) > 1;
+select department,sum(salary) from workers group by department order by sum(salary) desc limit 1 offset 1;
+select department,sum(salary) from workers group by department order by sum(salary) desc limit 1 offset 3;
+
+select id,name,department,salary from workers where salary = (select max(salary) from workers);
+select * from workers where id in (select id from workers where salary > 65000);
+select * from workers where id not in (select id from workers where salary > 65000);
+SELECT * FROM workers WHERE salary BETWEEN (SELECT MIN(salary) FROM workers WHERE department = 'Engineering') AND (SELECT MAX(salary) FROM workers WHERE department = 'Engineering');
+
+create table student (
+s_id int,
+s_name varchar(25)
+);
+ insert into student values(101,'Neeraj'),(102,'Cassey'),(103,'struart'),(104,'james'),(105,'david');
+ 
+ create table address (
+ s_id int,
+ s_address varchar(25)
+ );
+ insert into address values (101,'chennai'),(103,'begaluru'),(104,'delhi');
+ select * from student cross join address;
+ 
+select * from student inner join address where student.s_id = address.s_id;
+select * from student left outer join address on( student.s_id = address.s_id );
+select * from student right outer join address on( student.s_id = address.s_id );
+
+select DISTINCT salary from workers w1 where 5 = ( select count(distinct salary) from workers w2 where w2.salary >= w1.salary);            #5th highest salary of a worker without using top,limit,offset
