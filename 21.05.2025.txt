@@ -1,0 +1,64 @@
+show databases;
+use worker;
+show tables from worker;
+select * from workers;
+select * from workers where salary between 60000 and 75000;
+select * from workers where salary not between 60000 and 75000;
+select * from workers where salary not between 60000 and 75000 and id not in (1,2,3,4,5);
+select * from workers where date_of_joining  between '2022-01-01' and '2023-01-01';
+select max(salary) from workers;
+select min(salary) from workers;
+select id,name,salary from workers where salary = (select max(salary) from workers);
+select id,name,salary from workers where salary = (select min(salary) from workers);
+select count(id) as total_workers from workers;
+select sum(salary) as total_salaery_of_all_workers from workers;
+select avg(salary) as average_salary_of_a_worker from workers;          #where cannot be included in aggregate functions
+
+CREATE TABLE worker1 (
+    id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department VARCHAR(50),
+    salary float4
+);
+
+INSERT INTO worker1 (id, first_name, last_name, department, salary) VALUES (101, 'Aarav', 'Patel', 'Engineering', 80000.00);
+INSERT INTO worker1 (id, first_name, last_name, department, salary) VALUES (102, 'Priya', 'Sharma', 'Marketing', 75000.00);
+INSERT INTO worker1 (id, first_name, last_name, department, salary) VALUES (103, 'Vikram', 'Reddy', 'Finance', 90000.00);
+INSERT INTO worker1 (id, first_name, last_name, department, salary) VALUES (104, 'Sneha', 'Iyer', 'HR', 70000.00);
+INSERT INTO worker1 (id, first_name, last_name, department, salary) VALUES (105, 'Raj', 'Verma', 'Sales', 85000.00);
+
+select * from worker1;
+select department from workers union select department from worker1;
+select department from workers union all select department from worker1;     #takes duplicates also
+select id,name from workers where department='sales' union select id,first_name from worker1 where department='sales' order by name;
+
+select id,name,salary,
+case
+when salary > 70000 then 'More Salary'
+when salary > 60000 then 'Moderate salary'
+when salary <= 60000 then 'Low salary'
+else 'Data not found'
+end
+as salaryResult
+from workers;
+
+select * from workers where salary < 75000 order by salary;
+select * from workers where salary < 75000 order by salary asc;
+select * from workers where salary < 75000 order by salary desc;
+
+select * from worker1 order by first_name asc, last_name desc;             # considers onlt fist_name asc
+select * from worker1 where first_name like '__i_%';
+select * from worker1 where last_name like '__r_%a';                       # name ending with a and thirst letter as r
+select * from worker1 where last_name like '%y_r';     
+
+create view sales_team as select * from worker1 where department = 'sales';
+create view hr_team as select * from worker1 where department = 'HR';
+
+select * from sales_team;
+select * from hr_team;
+
+create or replace view finance_team as select * from worker1 where department = 'finance';
+select * from finance_team;
+drop view hr_team;
+
