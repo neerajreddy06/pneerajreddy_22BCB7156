@@ -1,0 +1,73 @@
+Name : P Neeraj Reddy
+RegNo : 22BCB7156
+
+
+show databases;
+drop database amitdb;
+use vit;
+show tables from vit;
+# drop table cse;
+desc cse;
+# alter table cse drop column s_department
+
+# delete from cse;
+# delete from cse where s_gpa > 9.5;
+# delete from cse where s_department = 'cse';
+
+# truncate table cse;
+
+create table userinfo (
+id int,
+name varchar(20)
+);
+start transaction;
+insert into userinfo values(100,'neeraj');
+savepoint a11;
+insert into userinfo values(101,'amit');
+savepoint a12;
+delete from userinfo where id=100;
+select * from userinfo;
+rollback to a12;
+select * from userinfo;
+commit;
+
+select name as User_Name from userinfo;
+
+select * from userinfo ;
+
+use vit;
+select s_name,s_id from cse where s_gpa >= 9.2;
+select s_id,s_name from cse where s_domain = 'AIML';
+select s_id,s_name from cse where s_domain = 'Web Development';
+select s_id,s_name from cse where s_gpa < 9.0;
+
+
+CREATE DATABASE worker;
+USE worker;
+CREATE TABLE workers (
+    id INT1,
+    name VARCHAR(100) ,
+    department VARCHAR(100),
+    salary DECIMAL(10, 2),
+    date_of_joining DATE,
+    email VARCHAR(100)
+);
+INSERT INTO workers VALUES (1, 'Aarav Sharma', 'Engineering', 75000.00, '2023-06-15', 'aarav.sharma@example.com');
+INSERT INTO workers VALUES (2, 'Diya Mehra', 'Human Resources', 60000.00, '2022-09-20', 'diya.mehra@example.com');
+INSERT INTO workers VALUES (3, 'Rajiv Nair', 'Finance', 82000.00, '2021-01-10', 'rajiv.nair@example.com');
+INSERT INTO workers VALUES (4, 'Sneha Iyer', 'Marketing', 68000.00, '2022-03-25', 'sneha.iyer@example.com');
+INSERT INTO workers VALUES (5, 'Karan Patel', 'Sales', 72000.00, '2020-11-18', 'karan.patel@example.com');
+INSERT INTO workers VALUES (6, 'Priya Reddy', 'Customer Support', 55000.00, '2023-02-01', 'priya.reddy@example.com');
+INSERT INTO workers VALUES (7, 'Vikram Chauhan', 'Engineering', 79000.00, '2019-07-30', 'vikram.chauhan@example.com');
+INSERT INTO workers VALUES (8, 'Meera Joshi', 'Design', 64000.00, '2021-08-05', 'meera.joshi@example.com');
+INSERT INTO workers VALUES (9, 'Ankit Verma', 'IT Support', 61000.00, '2023-04-12', 'ankit.verma@example.com');
+INSERT INTO workers VALUES (10, 'Ishita Kapoor', 'Legal', 85000.00, '2020-10-10', 'ishita.kapoor@example.com');
+
+select name,department,salary from workers where salary > 50000 and department = 'Human Resources';
+select * from workers where salary < 50000 and department = 'Human Resources' OR department = 'sales';
+select * from workers where (salary>50000 and salary<80000) and (department = 'Human Resources' OR department = 'sales');
+
+select * from workers where id not in (1,6,7,8);
+select * from workers where id in (1,6,7,8);
+
+SELECT * FROM workers WHERE MOD(id, 2) = 0 AND department IN ('Human Resources', 'Sales') AND salary = (SELECT MAX(salary) FROM workers WHERE MOD(id, 2) = 0 AND department IN ('Human Resources', 'Sales'));

@@ -1,0 +1,96 @@
+Name : P Neeraj Reddy
+RegNo : 22BCB7156
+
+create database VIT;
+use VIT;
+create table cse (
+s_id int1,
+s_name varchar(30),
+s_gpa float,
+s_domain varchar(20)
+);
+create table ece (
+s_id int1,
+s_name varchar(30),
+s_gpa float,
+s_domain varchar(20)
+);
+create table mech (
+s_id int1,
+s_name varchar(30),
+s_gpa float,
+s_domain varchar(20)
+);
+
+insert into cse values(100,'Neeraj',8.53,'Web Development');
+insert into cse values(101,'Cassey',9.1,'Web Development');
+insert into cse values(102,'Pavan',9.3,'Data Science');
+insert into cse values(103,'Robert',8.2,'Data Analytics');
+insert into cse values(104,'David',8.9,'Data Science');
+insert into cse values(105,'Josh',9.5,'AIML');
+insert into cse values(106,'Tim',9.6,'Machine Learning');
+insert into cse values(107,'Johnson',7.8,'Data Analytics');
+insert into cse values(108,'Jake',8.7,'Web Development');
+insert into cse values(109,'Jacob',9.2,'AIML');
+
+
+insert into ece values(100,'Neeraj',8.53,'Web Development');
+insert into ece values(101,'Cassey',9.1,'Web Development');
+insert into ece values(102,'Pavan',9.3,'Data Science');
+insert into ece values(103,'Robert',8.2,'Data Analytics');
+insert into ece values(104,'David',8.9,'Data Science');
+insert into ece values(105,'Josh',9.5,'AIML');
+insert into ece values(106,'Tim',9.6,'Machine Learning');
+insert into ece values(107,'Johnson',7.8,'Data Analytics');
+insert into ece values(108,'Jake',8.7,'Web Development');
+insert into ece values(109,'Jacob',9.2,'AIML');
+
+insert into mech values(100,'Neeraj',8.53,'Web Development');
+insert into mech values(101,'Cassey',9.1,'Web Development');
+insert into mech values(102,'Pavan',9.3,'Data Science');
+insert into mech values(103,'Robert',8.2,'Data Analytics');
+insert into mech values(104,'David',8.9,'Data Science');
+insert into mech values(105,'Josh',9.5,'AIML');
+insert into mech values(106,'Tim',9.6,'Machine Learning');
+insert into mech values(107,'Johnson',7.8,'Data Analytics');
+insert into mech values(108,'Jake',8.7,'Web Development');
+insert into mech values(109,'Jacob',9.2,'AIML');
+
+select * from cse;
+
+alter table cse add(
+s_address VARCHAR(50)
+);
+
+alter table ece add(
+s_address VARCHAR(50)
+);
+
+alter table mech add(
+s_address VARCHAR(50)
+);
+
+alter table cse drop column s_address;
+alter table ece drop column s_address;
+alter table mech drop column s_address;
+
+alter table cse add (
+s_department varchar(10) default 'cse'
+);
+
+alter table ece add (
+s_department varchar(10) default 'ece'
+);
+
+alter table mech add (
+s_department varchar(10) default 'mech'
+);
+
+update cse set s_gpa=9.5 where s_id=100;
+update ece set s_gpa=9.5 where s_id=100;
+update mech set s_gpa=9.5 where s_id=100;
+
+update cse set s_gpa= s_gpa + 0.1;
+update ece set s_gpa=s_gpa + 0.1;
+update mech set s_gpa=s_gpa + 0.1;
+
