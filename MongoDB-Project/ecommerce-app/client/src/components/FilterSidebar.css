@@ -1,0 +1,31 @@
+/* client/src/components/FilterSidebar.css */
+
+.filter-sidebar {
+  width: 220px;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+  background-color: #f9f9f9;
+  height: 100%;
+}
+
+.filter-sidebar h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
