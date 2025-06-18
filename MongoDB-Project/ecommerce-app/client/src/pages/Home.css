@@ -1,0 +1,46 @@
+/* client/src/pages/Home.css */
+.home-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  text-align: center;
+}
+
+.home-content {
+  max-width: 600px;
+}
+
+.home-content h1 {
+  font-size: 36px;
+  color: #333;
+}
+
+.home-content h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 10px 0;
+  color: #000;
+}
+
+.home-content p {
+  font-size: 16px;
+  color: #777;
+  margin: 20px 0;
+}
+
+.home-content button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-content button:hover {
+  background-color: #0056b3;
+}
